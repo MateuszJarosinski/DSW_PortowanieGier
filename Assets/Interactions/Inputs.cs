@@ -29,16 +29,16 @@ public partial class @Inputs : IInputActionCollection2, IDisposable
             ""actions"": [
                 {
                     ""name"": ""Movement"",
-                    ""type"": ""Value"",
+                    ""type"": ""PassThrough"",
                     ""id"": ""b41e8962-6e92-4572-ae44-3bea765143b4"",
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": true
+                    ""initialStateCheck"": false
                 },
                 {
                     ""name"": ""Jump"",
-                    ""type"": ""Button"",
+                    ""type"": ""PassThrough"",
                     ""id"": ""c4a42643-f02c-45ae-8a18-e0943ea9bd33"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",

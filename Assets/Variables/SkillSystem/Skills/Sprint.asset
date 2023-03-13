@@ -17,4 +17,4 @@ MonoBehaviour:
     Gold: 10
     UnlockedSkillsRequired:
     - {fileID: 11400000, guid: ee6d361062635f24f99acb5197018902, type: 2}
-  <IsActive>k__BackingField: 0
+  <IsActive>k__BackingField: 1

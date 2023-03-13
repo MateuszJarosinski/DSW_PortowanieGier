@@ -25,6 +25,10 @@ public class PlayerController : MonoBehaviour
 
     private float yMovement = -9.81f;
 
+    private Vector2 _moveAxis;
+    private bool _isJumping;
+    private bool _isSprinting;
+
     private void Awake()
     {
         if (Instance != null)
@@ -36,29 +40,44 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        // var movementValue = new Vector2(Input.GetAxis("Horizontal"),  Input.GetAxis("Vertical"));
-        //
-        // if (SprintSkill.IsActive && Input.GetKey(KeyCode.LeftShift) && StaminaVariable.Value > 0)
-        // {
-        //     movementValue *= sprintModificator;
-        //     StaminaVariable.Value -= staminaUse * Time.deltaTime;
-        // }
-        // else
-        // {
-        //     StaminaVariable.Value += Time.fixedDeltaTime;
-        //     StaminaVariable.Value = Mathf.Clamp01(StaminaVariable.Value);
-        // }
-        //
-        // movementValue *= velocity;
-        // movementValue *= Time.deltaTime;
-        //
-        // characterController.Move(new Vector3(movementValue.x, yMovement * Time.deltaTime, movementValue.y));
-        // if(characterController.velocity.sqrMagnitude > 0.1)
-        //     transform.forward = new Vector3(movementValue.x, 0f, movementValue.y);
-        //
-        // if (JumpSkill.IsActive && Input.GetKeyDown(KeyCode.Space) && characterController.isGrounded)
-        //     yMovement = 10f;
-        //
-        // yMovement = Mathf.Max(-9.81f, yMovement - Time.deltaTime * 30f);
+        var movementValue = _moveAxis;
+        
+        if (SprintSkill.IsActive && _isSprinting && StaminaVariable.Value > 0)
+        {
+            movementValue *= sprintModificator;
+            StaminaVariable.Value -= staminaUse * Time.deltaTime;
+        }
+        else
+        {
+            StaminaVariable.Value += Time.fixedDeltaTime;
+            StaminaVariable.Value = Mathf.Clamp01(StaminaVariable.Value);
+        }
+        
+        movementValue *= velocity;
+        movementValue *= Time.deltaTime;
+        
+        characterController.Move(new Vector3(movementValue.x, yMovement * Time.deltaTime, movementValue.y));
+        if(characterController.velocity.sqrMagnitude > 0.1)
+            transform.forward = new Vector3(movementValue.x, 0f, movementValue.y);
+        
+        if (JumpSkill.IsActive && _isJumping && characterController.isGrounded)
+            yMovement = 10f;
+        
+        yMovement = Mathf.Max(-9.81f, yMovement - Time.deltaTime * 30f);
+    }
+
+    public void SetMoveDirection(Vector2 direction)
+    {
+        _moveAxis = direction;
+    }
+
+    public void SetJump(bool isJumping)
+    {
+        _isJumping = isJumping;
+    }
+
+    public void SetSprint(bool isSprinting)
+    {
+        _isSprinting = isSprinting;
     }
 }

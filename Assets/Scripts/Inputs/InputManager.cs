@@ -14,19 +14,19 @@ public class InputManager : MonoBehaviour
 
     private void OnEnable()
     {
-        var player = GameObject.FindGameObjectWithTag("Player");
+        var playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
 
         _inputs.Gameplay.Movement.performed += ctxMove =>
         {
-            Debug.Log(ctxMove.ReadValue<Vector2>());
+            playerController.SetMoveDirection(ctxMove.ReadValue<Vector2>());
         };
         _inputs.Gameplay.Jump.performed += ctxJump =>
         {
-            Debug.Log(ctxJump.ReadValueAsButton());
+            playerController.SetJump(ctxJump.ReadValueAsButton());
         };
         _inputs.Gameplay.Sprint.performed += ctxSprint =>
         {
-            Debug.Log(ctxSprint.ReadValueAsButton());
+            playerController.SetSprint(ctxSprint.ReadValueAsButton());
         };
         
         _inputs.Enable();
