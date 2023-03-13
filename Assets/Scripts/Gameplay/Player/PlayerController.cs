@@ -36,29 +36,29 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        var movementValue = new Vector2(Input.GetAxis("Horizontal"),  Input.GetAxis("Vertical"));
-
-        if (SprintSkill.IsActive && Input.GetKey(KeyCode.LeftShift) && StaminaVariable.Value > 0)
-        {
-            movementValue *= sprintModificator;
-            StaminaVariable.Value -= staminaUse * Time.deltaTime;
-        }
-        else
-        {
-            StaminaVariable.Value += Time.fixedDeltaTime;
-            StaminaVariable.Value = Mathf.Clamp01(StaminaVariable.Value);
-        }
-
-        movementValue *= velocity;
-        movementValue *= Time.deltaTime;
-
-        characterController.Move(new Vector3(movementValue.x, yMovement * Time.deltaTime, movementValue.y));
-        if(characterController.velocity.sqrMagnitude > 0.1)
-            transform.forward = new Vector3(movementValue.x, 0f, movementValue.y);
-
-        if (JumpSkill.IsActive && Input.GetKeyDown(KeyCode.Space) && characterController.isGrounded)
-            yMovement = 10f;
-
-        yMovement = Mathf.Max(-9.81f, yMovement - Time.deltaTime * 30f);
+        // var movementValue = new Vector2(Input.GetAxis("Horizontal"),  Input.GetAxis("Vertical"));
+        //
+        // if (SprintSkill.IsActive && Input.GetKey(KeyCode.LeftShift) && StaminaVariable.Value > 0)
+        // {
+        //     movementValue *= sprintModificator;
+        //     StaminaVariable.Value -= staminaUse * Time.deltaTime;
+        // }
+        // else
+        // {
+        //     StaminaVariable.Value += Time.fixedDeltaTime;
+        //     StaminaVariable.Value = Mathf.Clamp01(StaminaVariable.Value);
+        // }
+        //
+        // movementValue *= velocity;
+        // movementValue *= Time.deltaTime;
+        //
+        // characterController.Move(new Vector3(movementValue.x, yMovement * Time.deltaTime, movementValue.y));
+        // if(characterController.velocity.sqrMagnitude > 0.1)
+        //     transform.forward = new Vector3(movementValue.x, 0f, movementValue.y);
+        //
+        // if (JumpSkill.IsActive && Input.GetKeyDown(KeyCode.Space) && characterController.isGrounded)
+        //     yMovement = 10f;
+        //
+        // yMovement = Mathf.Max(-9.81f, yMovement - Time.deltaTime * 30f);
     }
 }
