@@ -9,7 +9,7 @@ public class CameraPlayerFollow : MonoBehaviour
 
     private void Awake()
     {
-        Steamworks.SteamUserStats.SetAchievement("Camera controlled");
+        PlatformServices.PlatformUserStats.SetAchievement("Camera controlled");
     }
 
     private void LateUpdate()

@@ -11,6 +11,6 @@ public class SelectSkin : MonoBehaviour
     {
         playerData.SelectedSkin = skinPrefab;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        Steamworks.SteamUserStats.SetAchievement($"Skin selected: {skinPrefab.name}");
+        PlatformServices.PlatformUserStats.SetAchievement($"Skin selected: {skinPrefab.name}");
     }
 }
