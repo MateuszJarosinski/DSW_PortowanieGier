@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,11 @@ using UnityEngine;
 public class CameraPlayerFollow : MonoBehaviour
 {
     [SerializeField] Vector3 offset;
+
+    private void Awake()
+    {
+        Steamworks.SteamUserStats.SetAchievement("Camera controlled");
+    }
 
     private void LateUpdate()
     {
