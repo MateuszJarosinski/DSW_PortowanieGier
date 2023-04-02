@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
-public class SelectSkin : MonoBehaviour
+public class SelectSkin : MonoBehaviour, IPointerDownHandler
 {
     [SerializeField] private PlayerData playerData;
     [SerializeField] private Transform skinPrefab;
-    private void OnMouseDown()
+    public void OnPointerDown(PointerEventData eventData)
     {
         playerData.SelectedSkin = skinPrefab;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);

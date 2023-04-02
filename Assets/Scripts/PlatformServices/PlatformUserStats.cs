@@ -9,7 +9,8 @@ namespace PlatformServices
         [RuntimeInitializeOnLoadMethod]
         public static void Initialize()
         {
-#if STEAMWORKS_NET
+            Debug.Log("Init");
+#if !DISABLESTEAMWORKS
             _platform = new SteamUserStats();
             return;
 #endif
@@ -22,6 +23,7 @@ namespace PlatformServices
 
         public static bool SetAchievement(string achievementID)
         {
+            Debug.Log($"Achievement: {achievementID}");
             return _platform.SetAchievement(achievementID);
         }
     }
@@ -31,7 +33,7 @@ namespace PlatformServices
         public bool SetAchievement(string achievementID);
     }
     
-#if STEAMWORKS_NET
+#if !DISABLESTEAMWORKS
     public class SteamUserStats : IPlatformUserStats
     {
         public bool SetAchievement(string achievementID)
